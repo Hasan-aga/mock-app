@@ -5,6 +5,11 @@ import { useState } from "react";
 
 export default function App() {
   const [isVisible, setisVisible] = useState(true);
+  if (__DEV__) {
+    import("./ReactotronConfig").then(() =>
+      console.log("Reactotron Configured")
+    );
+  }
   return (
     <View style={{ flexDirection: "column", height: "100%", width: "100%" }}>
       <View style={{ flex: 1, alignSelf: "center", justifyContent: "center" }}>

@@ -2,9 +2,16 @@ import { useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import WebView from "react-native-webview";
 
+const runFirst = `
+window.test="hello world";
+`;
+
 export default function MyWebview({ link, isVisible }) {
   console.log(isVisible);
-  const pureWebview = useMemo(() => <WebView source={{ uri: link }} />, [link]);
+  const pureWebview = useMemo(
+    () => <WebView source={{ uri: link }} injectedJavaScript={runFirst} />,
+    [link]
+  );
   return (
     <View style={isVisible ? styles.container : styles.hiddenView}>
       {pureWebview}
