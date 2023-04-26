@@ -3,13 +3,21 @@ import { StyleSheet, View } from "react-native";
 import WebView from "react-native-webview";
 
 const runFirst = `
-window.test="hello world";
+window.test="injected js ran";
 `;
 
 export default function MyWebview({ link, isVisible }) {
   console.log(isVisible);
   const pureWebview = useMemo(
-    () => <WebView source={{ uri: link }} injectedJavaScript={runFirst} />,
+    () => (
+      <WebView
+        source={{ uri: link }}
+        injectedJavaScript={runFirst}
+        onMessage={(event) => {
+          alert(event.nativeEvent.data);
+        }}
+      />
+    ),
     [link]
   );
   return (

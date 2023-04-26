@@ -21,7 +21,6 @@ export default function App() {
       </View>
       <View style={{ flex: 2 }}>
         <MyWebview isVisible={isVisible} link="http://10.0.2.2:3000/" />
-        <MyWebview isVisible={!isVisible} link="http://10.0.2.2:3000/" />
       </View>
     </View>
   );
